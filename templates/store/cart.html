@@ -1,0 +1,37 @@
+{% extends "store/base.html" %}
+{% block content %}
+
+<h2 class="mb-3"><i class="fa-solid fa-cart-shopping"></i> Your Cart</h2>
+
+<table class="table table-bordered shadow-sm bg-white align-middle">
+<tr class="table-dark">
+  <th>Product</th>
+  <th>Qty</th>
+  <th>Subtotal</th>
+  <th>Action</th>
+</tr>
+
+{% for item in items %}
+<tr>
+  <td class="fw-bold">{{ item.product.title }}</td>
+  <td>{{ item.qty }}</td>
+  <td class="text-primary fw-bold">₹ {{ item.subtotal }}</td>
+  <td>
+    <a href="/remove-from-cart/{{ item.product.id }}/" class="btn btn-danger btn-sm">
+      <i class="fa-solid fa-trash"></i>
+    </a>
+  </td>
+</tr>
+{% endfor %}
+</table>
+
+<h3 class="fw-bold">Total: ₹ {{ total }}</h3>
+
+<a href="/checkout/" class="btn btn-success btn-lg mt-3">
+  Proceed to Checkout
+</a>
+<a href="/" class="btn btn-success btn-lg mt-3">
+  Continue Shopping 
+</a>
+
+{% endblock %}
